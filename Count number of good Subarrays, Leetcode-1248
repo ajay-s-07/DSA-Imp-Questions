@@ -1,0 +1,26 @@
+Given an array of integers nums and an integer k. A continuous subarray is called nice if there are k odd numbers on it.
+Return the number of nice sub-arrays.
+
+Input: nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+Output: 16
+
+public int numberOfSubarrays(int[] nums, int k) {
+    int n = nums.length;
+    int ans = 0, count = 0, oddcount = 0;
+    int i=0, j=0;
+    while(j < n){
+        if(nums[j]%2 == 1){
+            oddcount++;
+            count = 0;
+        }
+        while(oddcount == k){
+            count++;
+            if(nums[i]%2 == 1)
+                oddcount--;
+            i++;
+        }
+        ans+=count;
+        j++;
+    }
+    return ans;
+}
